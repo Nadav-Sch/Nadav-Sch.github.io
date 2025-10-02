@@ -1,0 +1,99 @@
+:root{
+  --red:#e83b3b;
+  --yellow:#f2c33a;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#fff;
+  font-family:"Bodoni Moda", serif;
+}
+
+main{
+  min-height:100vh;
+  display:grid;
+  grid-template-rows:auto 1fr auto;
+  justify-items:center;
+  align-content:space-between;
+  padding:32px 0 40px;
+}
+
+header {
+  width: 160px;
+  height: 80px;
+  background: conic-gradient(
+    from 180deg at 50% 0%,
+    var(--red) 0% 25%,
+    var(--yellow) 25% 50%,
+    var(--red) 50% 75%,
+    var(--yellow) 75% 100%
+  );
+  border-radius: 160px 160px 0 0;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.poem {
+  width: min(100px, 70vw);
+  text-align: left;
+  border: 0px solid;
+  padding: 0px;
+}
+.poem p {
+  margin: 6px 0;
+  font-size: 23px;
+  line-height: 1.2;
+}
+
+.triangle {
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(to right, var(--yellow) 50%, var(--red) 50%);
+  clip-path: polygon(50% 0, 0 100%, 100% 100%);
+  z-index: 3;
+}
+
+footer{
+  display:flex;
+  gap:34px;
+  align-items:flex-end;
+}
+
+.shoe{
+  position:relative;
+  width:120px;
+  height:60px;
+  background:var(--red);
+  border-radius:18px 18px 0 0;
+  z-index: 0;
+}
+.shoe::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-24px;
+  height:27px;
+  background:#bdbdbd;
+  border-radius:6px;
+  z-index: -1;
+}
+.shoe::before {
+  content: "";
+  position: absolute;
+  top: -33px;
+  right: 0px;
+  width: 60px;
+  height: 100px;
+  background: var(--red);
+  border-radius: 4px;
+  z-index: 3;
+}
+.left{ transform:rotate(-6deg); }
+.right{ transform:rotate(6deg); }
