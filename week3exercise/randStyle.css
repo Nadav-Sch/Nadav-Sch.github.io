@@ -71,18 +71,17 @@ footer{
   height:60px;
   background:var(--red);
   border-radius:18px 18px 0 0;
-  z-index: 0;
+  z-index: 2;
 }
 .shoe::after{
   content:"";
   position:absolute;
-  left:0;
-  right:0;
-  bottom:-24px;
-  height:27px;
+  left:-0.5px;
+  right:-0.5px;
+  bottom:-12px;
+  height:15px;
   background:#bdbdbd;
-  border-radius:6px;
-  z-index: -1;
+  z-index:1;
 }
 .shoe::before {
   content: "";
@@ -90,10 +89,28 @@ footer{
   top: -33px;
   right: 0px;
   width: 60px;
-  height: 100px;
+  height: 60px;
   background: var(--red);
   border-radius: 4px;
   z-index: 3;
 }
 .left{ transform:rotate(-6deg); }
 .right{ transform:rotate(6deg); }
+
+.right::before{
+  left: 0;
+  right: auto;
+}
+
+.back-button{
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  background: black;
+  color: white;
+  padding: 8px 12px;
+  text-decoration: none;
+  font-size: 14px;
+  border-radius: 4px;
+  z-index: 999;
+}
