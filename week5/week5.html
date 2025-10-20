@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Ways of Seeing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="week5.css">
+</head>
+<body>
+  <header>
+    <div class="header-title">
+      <a class="back-link" href="../index.html" aria-label="Back to home">Home</a>
+      <h1>Ways of Seeing</h1>
+    </div>
+    <nav>
+      <a href="#" data-jump="1">Ep.1 Reproduction</a>
+      <a href="#" data-jump="2">Ep.2 Gaze</a>
+      <a href="#" data-jump="3">Ep.3 Property</a>
+      <a href="#" data-jump="4">Ep.4 Advertising</a>
+    </nav>
+  </header>
+
+  <main class="stage" id="stage" aria-label="Bouncing circles; click to expand for each episode response">
+    <div class="ball" data-ep="1" tabindex="0">
+      <span class="badge">EP1</span>
+      <div class="content">
+        <button class="close" aria-label="Close">✕</button>
+        <h2>Episode 1: Reproduction & Context</h2>
+        <p>Berger shows how reproduction detaches art from its original place and time. On the web, the frame is code: compression, crop, caption, feed. Each one recuts the meaningless aura, more remix.</p>
+        <div class="meta"><span>Keywords:</span><span>context</span>·<span>remix</span>·<span>frame</span></div>
+      </div>
+    </div>
+
+    <div class="ball" data-ep="2" tabindex="0">
+      <span class="badge">EP2</span>
+      <div class="content">
+        <button class="close" aria-label="Close">✕</button>
+        <h2>Episode 2: The Gaze</h2>
+        <p>“Men act and women appear.” The interface teaches us how to look. We learn to stage ourselves for the glance, the metric, the like, seeing as performance and surveillance.</p>
+        <div class="meta"><span>Keywords:</span><span>gaze</span>·<span>gender</span>·<span>power</span></div>
+      </div>
+    </div>
+
+    <div class="ball" data-ep="3" tabindex="0">
+      <span class="badge">EP3</span>
+      <div class="content">
+        <button class="close" aria-label="Close">✕</button>
+        <h2>Episode 3: The Nude</h2>
+        <p>The tradition of the nude turns nakedness into display. A woman becomes an image of herself, painted for someone else’s eyes. Beauty is a performance of submission, endlessly rehearsed.</p>
+        <div class="meta"><span>Keywords:</span><span>body</span>·<span>object</span>·<span>desire</span></div>
+      </div>
+    </div>
+
+    <div class="ball" data-ep="4" tabindex="0">
+      <span class="badge">EP4</span>
+      <div class="content">
+        <button class="close" aria-label="Close">✕</button>
+        <h2>Episode 4: Publicity & Desire</h2>
+        <p>Oil painting once measured wealth: fruit, silk, flesh, land. Each surface owned by the eye that could afford it. Today’s ads still shine with that logic: see it, want it, buy it.</p>
+        <div class="meta"><span>Keywords:</span><span>ownership</span>·<span>capital</span>·<span>display</span></div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const stage     = document.getElementById('stage');
+    const balls     = Array.from(document.querySelectorAll('.ball'));
+    const state     = new Map();
+    const stageSize = { width: 0, height: 0 };
+    let animId      = null;
+
+    function clamp(value, min, max){
+      if (min > max){ const t = min; min = max; max = t; }
+      return Math.min(Math.max(value, min), max);
+    }
+
+    function randomVelocity(){
+      const speed = 120 + Math.random() * 80;
+      const minComponent = 30;
+      let vx, vy;
+      do {
+        const angle = Math.random() * Math.PI * 2;
+        vx = Math.cos(angle) * speed;
+        vy = Math.sin(angle) * speed;
+      } while (Math.abs(vx) < minComponent || Math.abs(vy) < minComponent);
+      return { vx, vy };
+    }
+
+    function applyTransform(ball, s){
+      if (!s) return;
+      if (ball.classList.contains('expanded')) return;
+      const scale = s.scale ?? 1;
+      ball.style.transform = `translate3d(${s.x}px, ${s.y}px, 0) scale(${scale})`;
+    }
+
+    function configureBall(ball, existingState){
+      const width = stage.clientWidth;
+      const height = stage.clientHeight;
+      stageSize.width = width;
+      stageSize.height = height;
+      const w = ball.offsetWidth;
+      const h = ball.offsetHeight;
+      const maxX = Math.max(0, width - w);
+      const maxY = Math.max(0, height - h);
+      const s = existingState ?? {};
+
+      s.w = w;
+      s.h = h;
+
+      if (existingState){
+        s.x = clamp(s.x ?? maxX / 2, 0, maxX);
+        s.y = clamp(s.y ?? maxY / 2, 0, maxY);
+        if (!Number.isFinite(s.vx) || Math.abs(s.vx) < 10){
+          const { vx } = randomVelocity();
+          s.vx = vx;
+        }
+        if (!Number.isFinite(s.vy) || Math.abs(s.vy) < 10){
+          const { vy } = randomVelocity();
+          s.vy = vy;
+        }
+      } else {
+        s.x = Math.random() * maxX;
+        s.y = Math.random() * maxY;
+        const { vx, vy } = randomVelocity();
+        s.vx = vx;
+        s.vy = vy;
+      }
+
+      s.scale = s.scale ?? 1;
+      state.set(ball, s);
+      applyTransform(ball, s);
+    }
+
+    function resolveCollisions(boundsWidth, boundsHeight){
+      const count = balls.length;
+      for (let i = 0; i < count; i++){
+        const ballA = balls[i];
+        const sA = state.get(ballA);
+        if (!sA || ballA.classList.contains('expanded')) continue;
+        for (let j = i + 1; j < count; j++){
+          const ballB = balls[j];
+          const sB = state.get(ballB);
+          if (!sB || ballB.classList.contains('expanded')) continue;
+
+          const ax = sA.x + sA.w / 2;
+          const ay = sA.y + sA.h / 2;
+          const bx = sB.x + sB.w / 2;
+          const by = sB.y + sB.h / 2;
+          let dx = bx - ax;
+          let dy = by - ay;
+          const minDist = (sA.w + sB.w) / 2;
+          const distSq = dx * dx + dy * dy;
+          if (distSq >= minDist * minDist) continue;
+
+          let dist = Math.sqrt(distSq);
+          let nx = dx;
+          let ny = dy;
+          if (dist < 1e-6){
+            const angle = Math.random() * Math.PI * 2;
+            nx = Math.cos(angle);
+            ny = Math.sin(angle);
+            dist = 0;
+          } else {
+            nx /= dist;
+            ny /= dist;
+          }
+
+          const overlap = (minDist - dist) / 2;
+          sA.x = clamp(sA.x - nx * overlap, 0, boundsWidth - sA.w);
+          sA.y = clamp(sA.y - ny * overlap, 0, boundsHeight - sA.h);
+          sB.x = clamp(sB.x + nx * overlap, 0, boundsWidth - sB.w);
+          sB.y = clamp(sB.y + ny * overlap, 0, boundsHeight - sB.h);
+
+          const tempVx = sA.vx;
+          const tempVy = sA.vy;
+          sA.vx = sB.vx;
+          sA.vy = sB.vy;
+          sB.vx = tempVx;
+          sB.vy = tempVy;
+        }
+      }
+    }
+
+    function step(now){
+      if (!step.prev) step.prev = now;
+      const dt = Math.min(90, now - step.prev) / 1000;
+      step.prev = now;
+      const width = stageSize.width || stage.clientWidth;
+      const height = stageSize.height || stage.clientHeight;
+
+      for (const [ball, s] of state.entries()){
+        if (ball.classList.contains('expanded')) continue;
+        s.x += s.vx * dt;
+        s.y += s.vy * dt;
+
+        if (s.x <= 0){
+          s.x = 0;
+          s.vx = Math.abs(s.vx);
+        } else if (s.x + s.w >= width){
+          s.x = Math.max(0, width - s.w);
+          s.vx = -Math.abs(s.vx);
+        }
+
+        if (s.y <= 0){
+          s.y = 0;
+          s.vy = Math.abs(s.vy);
+        } else if (s.y + s.h >= height){
+          s.y = Math.max(0, height - s.h);
+          s.vy = -Math.abs(s.vy);
+        }
+      }
+
+      resolveCollisions(width, height);
+
+      for (const [ball, s] of state.entries()){
+        applyTransform(ball, s);
+      }
+      animId = requestAnimationFrame(step);
+    }
+
+    function fitExpandedToViewport(ball){
+      requestAnimationFrame(()=>{
+        if (!ball.classList.contains('expanded')) return;
+        const rect = ball.getBoundingClientRect();
+        const viewportW = window.innerWidth;
+        const viewportH = window.innerHeight;
+        const pad = 16;
+        const halfW = rect.width / 2;
+        const halfH = rect.height / 2;
+        let centerX = parseFloat(ball.style.left) || viewportW / 2;
+        let centerY = parseFloat(ball.style.top) || viewportH / 2;
+
+        const minX = halfW + pad;
+        const maxX = viewportW - halfW - pad;
+        const minY = halfH + pad;
+        const maxY = viewportH - halfH - pad;
+
+        centerX = clamp(centerX, minX, maxX);
+        centerY = clamp(centerY, minY, maxY);
+
+        ball.style.left = centerX + 'px';
+        ball.style.top = centerY + 'px';
+      });
+    }
+
+    function expand(ball){
+      const br = ball.getBoundingClientRect();
+      const sx = br.left + br.width / 2;
+      const sy = br.top  + br.height / 2;
+      ball.style.left = sx + 'px';
+      ball.style.top = sy + 'px';
+      ball.style.transform = 'translate(-50%, -50%) scale(1)';
+      ball.classList.add('expanded');
+      stage.classList.add('dim');
+      fitExpandedToViewport(ball);
+      const close = ball.querySelector('.close');
+      if (close) close.focus();
+    }
+
+    function collapse(ball){
+      ball.classList.remove('expanded');
+      stage.classList.remove('dim');
+      ball.style.removeProperty('left');
+      ball.style.removeProperty('top');
+      const s = state.get(ball);
+      if (s){
+        s.scale = 1;
+        applyTransform(ball, s);
+      } else {
+        ball.style.transform = 'translate3d(0,0,0) scale(1)';
+      }
+    }
+
+    balls.forEach(ball=>configureBall(ball));
+    animId = requestAnimationFrame(step);
+
+    balls.forEach(ball=>{
+      ball.addEventListener('click', e=>{
+        if (!ball.classList.contains('expanded')) expand(ball);
+      });
+      ball.addEventListener('keydown', e=>{
+        if ((e.key === 'Enter' || e.key === ' ') && !ball.classList.contains('expanded')){
+          e.preventDefault();
+          expand(ball);
+        }
+      });
+      const close = ball.querySelector('.close');
+      close && close.addEventListener('click', e=>{
+        e.stopPropagation();
+        collapse(ball);
+      });
+
+      ball.addEventListener('mouseenter', ()=>{
+        if (ball.classList.contains('expanded')) return;
+        const s = state.get(ball);
+        if (!s) return;
+        s.scale = 1.06;
+        applyTransform(ball, s);
+      });
+
+      ball.addEventListener('mouseleave', ()=>{
+        const s = state.get(ball);
+        if (!s) return;
+        s.scale = 1;
+        applyTransform(ball, s);
+      });
+    });
+
+    window.addEventListener('resize', ()=>{
+      stageSize.width = stage.clientWidth;
+      stageSize.height = stage.clientHeight;
+      for (const [ball, s] of state.entries()){
+        if (ball.classList.contains('expanded')){
+          fitExpandedToViewport(ball);
+          continue;
+        }
+        configureBall(ball, s);
+      }
+    });
+
+    document.querySelectorAll('nav a[data-jump]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        e.preventDefault();
+        const idx = a.getAttribute('data-jump');
+        const ball = document.querySelector(`.ball[data-ep="${idx}"]`);
+        if (ball) expand(ball);
+      });
+    });
+  </script>
+</body>
+</html>
