@@ -2,9 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById("gameCanvas");
   const statusEl = document.getElementById("statusMessage");
   const killCountEl = document.getElementById("killCount");
+  const scoreEl = document.getElementById("scoreCount");
   const textBlocks = Array.from(document.querySelectorAll(".text-block"));
 
-  if (!canvas || !statusEl || !killCountEl || !textBlocks.length) return;
+  if (!canvas || !statusEl || !killCountEl || !scoreEl || !textBlocks.length) return;
 
   const context = canvas.getContext("2d");
   if (!context) return;
@@ -71,6 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let lastShotTime = 0;
   let gameOver = false;
   let lastFrameTime = 0;
+  let score = 0;
 
   const clampPlayerToBounds = () => {
     player.x = Math.min(Math.max(player.x, 0), Math.max(canvas.width - player.width, 0));
@@ -163,6 +165,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const handleKill = () => {
     kills += 1;
     killCountEl.textContent = String(Math.min(kills, textBlocks.length));
+    score = Math.min(score + 1, 9999);
+    scoreEl.textContent = String(score);
     revealTextBlock(kills - 1);
     stageIndex += 1;
     enemy = null;

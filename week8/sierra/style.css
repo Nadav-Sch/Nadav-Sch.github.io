@@ -24,13 +24,13 @@ background-color: blue;
 }
 
 h1 {
-font-family: Tiny5, sans-serif;
+font-family: Sixtyfour, sans-serif;
 text-align: center;
 color: yellow;
 }
 
 h2 {
-font-family: "B612 Mono", monospace;
+font-family: Tiny5, monospace;
 text-align: left;
 color: yellow;
 }
@@ -56,7 +56,7 @@ img {
 .button {
  background-color: #FFFF01;
  color: #0000FE;
- font-family: "B612 Mono", sans-serif;
+ font-family: Tiny5, sans-serif;
  font-size: 16px;
  border: 2px solid transparent;
  border-radius: 0;
@@ -76,7 +76,7 @@ img {
 }
 
 .instructions{
-    font-family: "B612 Mono", monospace;
+    font-family: Tiny5, monospace;
     font-size: medium;
     color:#FFFF01;
     margin-top: 10px;
