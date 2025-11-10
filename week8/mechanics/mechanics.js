@@ -17,10 +17,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const getRailBaseline = () => player.height * 2 + 30;
 
   const enemyStages = [
-    { size: 110, speed: 1.2 }, // enemy 1 larger
-    { size: 100, speed: 1.35 }, // enemy 2 larger
-    { size: 84, speed: 1.5 }, // enemy 3 stays the same
-    { size: 110, speed: 1.65 } // enemy 4 larger
+    { size: 110, speed: 1.2 }, 
+    { size: 100, speed: 1.35 }, 
+    { size: 84, speed: 1.5 }, 
+    { size: 110, speed: 1.65 } 
   ];
 
   const enemySprites = ["images/enemy1.png", "images/enemy2.png", "images/enemy3.png", "images/enemy4.png"].map((src) => {
