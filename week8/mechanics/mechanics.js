@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const shootCooldown = 240;
 
   const getLanePositions = () => laneRatios.map((ratio) => canvas.width * ratio);
-  const getRailBaseline = () => Math.max(90, canvas.height * 0.12);
+  const getRailBaseline = () => player.height * 2 + 30;
 
   const enemyStages = [
     { size: 110, speed: 1.2 }, // enemy 1 larger
@@ -247,7 +247,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const drawPlayer = () => {
-    context.fillStyle = "#4f7bff";
+    context.fillStyle = "#ffff01";
     context.fillRect(player.x, player.y, player.width, player.height);
 
     const turretWidth = player.width * 0.18;
@@ -280,13 +280,9 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const drawRail = () => {
-    context.strokeStyle = "rgba(255, 231, 115, 0.22)";
-    context.lineWidth = 2;
-    const railY = player.y + player.height + 14;
-    context.beginPath();
-    context.moveTo(0, railY);
-    context.lineTo(canvas.width, railY);
-    context.stroke();
+    const railY = player.y + player.height;
+    context.fillStyle = "rgba(0, 0, 40, 0.9)";
+    context.fillRect(0, railY, canvas.width, canvas.height - railY);
   };
 
   const loop = (timestamp) => {

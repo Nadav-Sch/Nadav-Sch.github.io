@@ -6,14 +6,15 @@ html,
 body {
   margin: 0;
   height: 100%;
-  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
-  background: #f3755b;
-  color: #111;
+  font-family: "B612 Mono", "Inter", "Helvetica Neue", Arial, sans-serif;
+  background: #0000fe;
+  color: #ffff01;
 }
 
 body {
   min-height: 100vh;
   overflow: hidden;
+  background: #0000fe;
 }
 
 .stage {
@@ -21,7 +22,7 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background: #f3755b;
+  background: #0000fe;
 }
 
 #gameCanvas {
@@ -40,18 +41,19 @@ body {
   left: clamp(12px, 4vw, 32px);
   padding: 6px 14px;
   border-radius: 999px;
-  border: 1px solid #111;
-  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #ffff01;
+  background: rgba(0, 0, 136, 0.4);
   text-decoration: none;
   font-weight: 600;
   font-size: 16px;
-  color: #111;
+  color: #ffff01;
   z-index: 4;
+  text-transform: uppercase;
 }
 
 .page-back-arrow:hover,
 .page-back-arrow:focus {
-  background: #fff;
+  background: rgba(0, 0, 170, 0.6);
 }
 
 .stage-header {
@@ -61,8 +63,8 @@ body {
   transform: translateX(-50%);
   width: min(520px, 92vw);
   padding: 8px clamp(12px, 4vw, 26px) 12px;
-  background: #f7f7f7;
-  border: 1px solid #111;
+  background: rgba(0, 0, 120, 0.8);
+  border: 2px solid #ffff01;
   border-top: none;
   border-bottom-left-radius: 18px;
   border-bottom-right-radius: 18px;
@@ -72,7 +74,7 @@ body {
   gap: clamp(8px, 3vw, 28px);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  font-size: 9px;
+  font-size: 12px;
   z-index: 3;
 }
 
@@ -82,20 +84,20 @@ body {
   right: clamp(12px, 4vw, 32px);
   padding: 6px 14px;
   border-radius: 999px;
-  border: 1px solid #111;
-  background: rgba(255, 255, 255, 0.85);
+  border: 2px solid #ffff01;
+  background: rgba(0, 0, 120, 0.5);
   text-decoration: none;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #111;
+  color: #ffff01;
   z-index: 4;
 }
 
 .sierra-link:hover,
 .sierra-link:focus {
-  background: #fff;
+  background: rgba(0, 0, 170, 0.6);
 }
 
 .title-stack {
@@ -114,8 +116,10 @@ body {
 
 .title-stack h1 {
   margin: 0;
-  font-size: clamp(18px, 3.2vw, 26px);
-  letter-spacing: 0.03em;
+  font-size: clamp(22px, 4vw, 32px);
+  letter-spacing: 0.08em;
+  font-family: "Tiny5", "B612 Mono", sans-serif;
+  color: #ffff01;
 }
 
 .controls-strip {
@@ -147,10 +151,10 @@ body {
 .text-block {
   width: 100%;
   padding: clamp(6px, 1.4vw, 14px) clamp(14px, 2.4vw, 30px);
-  border: 1px solid rgba(17, 17, 17, 0.18);
+  border: 2px solid rgba(255, 255, 1, 0.4);
   border-radius: 18px;
-  background: rgba(255, 200, 190, 0.95);
-  color: rgba(17, 17, 17, 0.12);
+  background: rgba(0, 0, 120, 0.35);
+  color: rgba(255, 255, 1, 0.1);
   opacity: 0;
   transform: translateY(-10px);
   transition: opacity 0.25s ease, transform 0.25s ease, color 0.4s ease, border-color 0.3s ease,
@@ -160,8 +164,10 @@ body {
 .text-block h2 {
   margin: 0 0 4px;
   font-size: clamp(14px, 2.6vw, 24px);
-  letter-spacing: 0.03em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  font-family: "Tiny5", "B612 Mono", sans-serif;
+  color: rgba(255, 255, 1, 0.8);
 }
 
 .text-block p {
@@ -169,16 +175,18 @@ body {
   padding-left: clamp(6px, 1.5vw, 18px);
   padding-right: clamp(6px, 1.5vw, 18px);
   width: 100%;
-  font-size: clamp(12px, 2.2vw, 16px);
+  font-size: clamp(10px, 1.8vw, 14px);
   line-height: 1.45;
+  font-family: "B612 Mono", "Inter", sans-serif;
+  color: rgba(255, 255, 1, 0.7);
 }
 
 .text-block.revealed {
   opacity: 1;
   transform: translateY(0);
-  color: #111;
-  border-color: rgba(17, 17, 17, 0.45);
-  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.08);
+  color: #ffff01;
+  border-color: rgba(255, 255, 1, 0.8);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.4), inset 0 0 12px rgba(255, 255, 1, 0.15);
 }
 
 .hud {

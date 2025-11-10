@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <title>Thoughts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=B612+Mono:wght@400;700&family=Tiny5&display=swap" rel="stylesheet" />
     <style>
       * {
         box-sizing: border-box;
@@ -11,50 +14,54 @@
       html {
         margin: 0;
         min-height: 100%;
-        background-color: #120f1b;
-        background-image: radial-gradient(circle at top, #352f44, #120f1b 55%);
+        background: radial-gradient(circle at top, #0000aa, #000033 65%);
         background-attachment: fixed;
       }
 
       body {
         margin: 0;
         min-height: 100vh;
-        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        font-family: "B612 Mono", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        font-size: 22px;
         background-color: transparent;
-        color: #f7f5ff;
+        color: #ffff01;
         padding: clamp(24px, 5vw, 64px) clamp(16px, 5vw, 60px) clamp(40px, 6vw, 80px);
       }
 
       .nav-arrow {
-        border: 1px solid rgba(247, 245, 255, 0.6);
-        background: transparent;
+        border: 2px solid #ffff01;
+        background: rgba(0, 0, 170, 0.35);
         border-radius: 999px;
         padding: 6px 16px;
         font-weight: 600;
         letter-spacing: 0.12em;
-        color: inherit;
+        color: #ffff01;
         cursor: pointer;
         margin-bottom: 24px;
+        text-transform: uppercase;
       }
 
       .nav-arrow-bottom {
         display: block;
         margin-left: auto;
         margin-right: 0;
-        margin-top: clamp(32px, 6vw, 60px);
+        margin-top: clamp(24px, 5vw, 40px);
         width: fit-content;
-        padding: 8px 18px;
+        padding: 6px 16px;
       }
 
       h1 {
         margin: clamp(40px, 10vw, 120px) auto;
         text-align: center;
         text-transform: uppercase;
-        letter-spacing: 0.12em;
-        font-size: clamp(64px, 12vw, 180px);
+        letter-spacing: 0.1em;
+        font-size: clamp(48px, 10vw, 130px);
         font-weight: 800;
-        max-width: 70vw;
+        max-width: 90vw;
         line-height: 1.1;
+        font-family: "Tiny5", "B612 Mono", sans-serif;
+        color: #ffff01;
+        text-shadow: 0 0 25px rgba(255, 255, 1, 0.35);
       }
 
       .timeline {
@@ -71,7 +78,7 @@
         top: 0;
         bottom: 0;
         width: 2px;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
+        background: linear-gradient(180deg, rgba(255, 255, 1, 0.4), rgba(255, 255, 1, 0));
       }
 
       .thought-card {
@@ -79,9 +86,9 @@
         margin-bottom: clamp(180px, 45vh, 320px);
         padding: clamp(22px, 4vw, 38px);
         border-radius: 28px;
-        background: rgba(255, 255, 255, 0.07);
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        box-shadow: 0 26px 60px rgba(0, 0, 0, 0.35);
+        background: rgba(0, 0, 120, 0.38);
+        border: 2px solid rgba(255, 255, 1, 0.8);
+        box-shadow: 0 0 20px rgba(255, 255, 1, 0.3), inset 0 0 15px rgba(0, 0, 0, 0.45);
         opacity: 0;
         transform: translateY(60px);
         transition: opacity 0.4s ease, transform 0.4s ease;
@@ -100,21 +107,26 @@
         width: clamp(16px, 3vw, 24px);
         height: clamp(16px, 3vw, 24px);
         border-radius: 50%;
-        background: rgba(255, 160, 169, 0.9);
-        box-shadow: 0 0 0 6px rgba(255, 160, 169, 0.15);
+        background: #ffff01;
+        box-shadow: 0 0 0 6px rgba(255, 255, 1, 0.2);
       }
 
       .thought-card h2 {
         margin-top: 0;
         text-transform: uppercase;
-        letter-spacing: 0.18em;
-        font-size: 18px;
+        letter-spacing: 0.25em;
+        font-size: 24px;
+        font-family: "Tiny5", "B612 Mono", sans-serif;
+        color: #ffff01;
       }
 
       .thought-card p {
-        margin: 0 0 14px 0;
-        line-height: 1.75;
-        color: rgba(247, 245, 255, 0.9);
+        margin: 0 0 18px 0;
+        line-height: 1.9;
+        color: rgba(255, 255, 1, 0.92);
+        font-family: "B612 Mono", "Inter", sans-serif;
+        font-size: 18px;
+        text-shadow: 0 0 6px rgba(0, 0, 0, 0.55);
       }
 
       .thought-card p:last-child {
@@ -137,7 +149,7 @@
     </style>
   </head>
   <body>
-    <button class="nav-arrow" type="button" onclick="window.location.href='sierra/index.html'" aria-label="Back to Sierra">←</button>
+    <button class="nav-arrow" type="button" onclick="window.location.href='../sierra/index.html'" aria-label="Back to Sierra">←</button>
     <h1>Thoughts</h1>
 
     <section class="timeline">
@@ -172,7 +184,7 @@
       </p>
     </section>
 
-    <button class="nav-arrow nav-arrow-bottom" type="button" onclick="window.location.href='index.html'" aria-label="Back to Home">
+    <button class="nav-arrow nav-arrow-bottom" type="button" onclick="window.location.href='../../index.html'" aria-label="Back to Home">
       Home
     </button>
 

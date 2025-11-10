@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>   
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WebDev_Presentation - BlackLash</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=B612+Mono:wght@400;700&family=Tiny5&display=swap" rel="stylesheet">
+  <link href="presentation-style.css" rel="stylesheet" />
+</head>
+  
+<body>
+  <main>
+    <h1>BlackLash</h1>
+    <img src="blacklash.jpg" alt="BlackLash screenshot">
+    <p>
+      <strong>BlackLash (1998)</strong> is an interactive web game created by the British art collective 
+      <strong>Mongrel</strong>. Built as a parody of the 1990s arcade game <em>MacAttack</em>, 
+      <strong>BlackLash</strong> uses familiar video game mechanics to critique racism, class, and digital exclusion. 
+      Rather than focusing on entertainment, it invites players to confront stereotypes and systems of discrimination through humor and provocation.
+    </p>
+    <p>
+      Released during a time when the internet was rapidly expanding, <strong>BlackLash</strong> challenged who had 
+      access to digital spaces and whose stories were represented online. By combining lo-fi graphics, 
+      hip-hop sound clips, and confrontational imagery, Mongrel turned gameplay into social commentary, forcing players 
+      to question how race and identity are coded into digital culture.
+    </p>
+    <button id="nextButton">Next</button>
+  </main>
+
+  <script>
+    document.getElementById("nextButton").addEventListener("click", function() {
+      window.location.href = "../mechanics/mechanics.html";
+    });
+  </script>
+</body>
+</html>
