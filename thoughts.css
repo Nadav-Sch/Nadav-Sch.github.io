@@ -1,0 +1,142 @@
+body {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #faf2ef;
+  color: #1a1a1a;
+}
+
+.back-arrow {
+  position: fixed;
+  top: 18px;
+  left: clamp(16px, 6vw, 40px);
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.35);
+  background: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  color: inherit;
+  letter-spacing: 0.04em;
+  z-index: 10;
+}
+
+.thoughts-layout {
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 48px clamp(16px, 6vw, 48px) 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.page-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 13px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #d16a5f;
+}
+
+h1 {
+  margin: 0;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.instructions {
+  margin: 0;
+  font-size: 14px;
+  color: rgba(26, 26, 26, 0.75);
+}
+
+.reflection {
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 22px 40px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.reflection.is-open {
+  border-color: #d16a5f;
+  box-shadow: 0 26px 46px rgba(209, 106, 95, 0.3);
+}
+
+.reflection-header {
+  width: 100%;
+  padding: 20px clamp(20px, 4vw, 32px);
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 20px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: inherit;
+  cursor: pointer;
+}
+
+.reflection-header:focus-visible {
+  outline: 2px solid #d16a5f;
+  outline-offset: 4px;
+}
+
+.reflection.is-open .hint {
+  color: #d16a5f;
+  text-transform: none;
+}
+
+.hint {
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(26, 26, 26, 0.5);
+}
+
+.reflection-body {
+  padding: 0 clamp(22px, 4vw, 34px) clamp(22px, 4vw, 34px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(20, 20, 20, 0.94);
+  animation: reveal 0.45s ease forwards;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .reflection-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 18px;
+  }
+
+  .hint {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+  }
+}

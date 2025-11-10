@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Week 8 · BlackLash Mechanics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="mechanics.css" />
+  </head>
+  <body>
+    <div class="stage">
+      <div class="text-layers">
+        <article class="text-block" data-stage="1">
+          <h2>Basic Gameplay</h2>
+          <p>
+            BlackLash plays like a classic 1990s arcade shooter. The player moves left and right along the bottom of the
+            screen and fires upward to destroy waves of enemies. The longer you survive, the faster and denser the
+            enemies become, creating a sense of chaos and urgency.
+          </p>
+        </article>
+        <article class="text-block" data-stage="2">
+          <h2>Enemies and movement</h2>
+          <p>
+            Enemies drop from the top of the screen in lanes. They represent figures of power and racism: police,
+            judges, KKK members, and Nazis. Some enemies split into multiple smaller ones when shot, making it harder to
+            stay alive and showing how hate or bias can multiply instead of disappearing.
+          </p>
+        </article>
+        <article class="text-block" data-stage="3">
+          <h2>Avatars and roles</h2>
+          <p>
+            Before playing, you choose from four avatars, each based on exaggerated racial stereotypes. Mongrel used
+            these characters to make players question how games historically portrayed Black identity and who gets to be
+            the “default” hero.
+          </p>
+        </article>
+        <article class="text-block" data-stage="4">
+          <h2>Visuals and sound</h2>
+          <p>
+            The graphics mix pixel art, collage, and sampled images. The soundtrack borrows snippets of hip-hop and
+            computer noises. Together they give the game a raw, hacked feeling, half protest and half glitch,
+            highlighting that this isn’t about polish, but about message.
+          </p>
+        </article>
+      </div>
+
+      <canvas
+        id="gameCanvas"
+        role="img"
+        aria-label="Player ship shoots projectiles at descending enemies to reveal text layers"
+      ></canvas>
+
+      <a class="page-back-arrow" href="../presentationintro.html" aria-label="Back to intro">←</a>
+      <header class="stage-header">
+        <div class="title-stack">
+          <h1>BlackLash Mechanics</h1>
+        </div>
+        <ul class="controls-strip" aria-label="Controls">
+          <li>← → move</li>
+          <li>Space shoot</li>
+          <li>R reset</li>
+        </ul>
+      </header>
+      <a class="sierra-link" href="../sierra/index.html" aria-label="Open Sierra site">→</a>
+
+      <div class="hud" hidden>
+        <p id="statusMessage">Hold the rail and reveal all four mechanics.</p>
+        <p class="counter"><span id="killCount">0</span> / 4 unlocked</p>
+      </div>
+    </div>
+
+    <script src="mechanics.js"></script>
+  </body>
+</html>

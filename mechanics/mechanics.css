@@ -1,0 +1,240 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  background: #f3755b;
+  color: #111;
+}
+
+body {
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.stage {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #f3755b;
+}
+
+#gameCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: transparent;
+  z-index: 2;
+}
+
+.page-back-arrow {
+  position: absolute;
+  top: 10px;
+  left: clamp(12px, 4vw, 32px);
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid #111;
+  background: rgba(255, 255, 255, 0.95);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  color: #111;
+  z-index: 4;
+}
+
+.page-back-arrow:hover,
+.page-back-arrow:focus {
+  background: #fff;
+}
+
+.stage-header {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(520px, 92vw);
+  padding: 8px clamp(12px, 4vw, 26px) 12px;
+  background: #f7f7f7;
+  border: 1px solid #111;
+  border-top: none;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(8px, 3vw, 28px);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 9px;
+  z-index: 3;
+}
+
+.sierra-link {
+  position: absolute;
+  top: 12px;
+  right: clamp(12px, 4vw, 32px);
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid #111;
+  background: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #111;
+  z-index: 4;
+}
+
+.sierra-link:hover,
+.sierra-link:focus {
+  background: #fff;
+}
+
+.title-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: center;
+}
+
+.subhead,
+.credit {
+  margin: 0;
+  font-size: 8px;
+  letter-spacing: 0.16em;
+}
+
+.title-stack h1 {
+  margin: 0;
+  font-size: clamp(18px, 3.2vw, 26px);
+  letter-spacing: 0.03em;
+}
+
+.controls-strip {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: clamp(6px, 2vw, 14px);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+
+.text-layers {
+  position: absolute;
+  top: clamp(120px, 16vh, 160px);
+  bottom: clamp(36px, 10vh, 80px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1000px, 90vw);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: clamp(18px, 3vh, 32px);
+  text-align: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.text-block {
+  width: 100%;
+  padding: clamp(6px, 1.4vw, 14px) clamp(14px, 2.4vw, 30px);
+  border: 1px solid rgba(17, 17, 17, 0.18);
+  border-radius: 18px;
+  background: rgba(255, 200, 190, 0.95);
+  color: rgba(17, 17, 17, 0.12);
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.25s ease, transform 0.25s ease, color 0.4s ease, border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.text-block h2 {
+  margin: 0 0 4px;
+  font-size: clamp(14px, 2.6vw, 24px);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.text-block p {
+  margin: 0 auto;
+  padding-left: clamp(6px, 1.5vw, 18px);
+  padding-right: clamp(6px, 1.5vw, 18px);
+  width: 100%;
+  font-size: clamp(12px, 2.2vw, 16px);
+  line-height: 1.45;
+}
+
+.text-block.revealed {
+  opacity: 1;
+  transform: translateY(0);
+  color: #111;
+  border-color: rgba(17, 17, 17, 0.45);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.08);
+}
+
+.hud {
+  position: absolute;
+  bottom: clamp(10px, 5vh, 24px);
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 10px;
+  z-index: 3;
+}
+
+#statusMessage {
+  margin: 0 0 4px;
+  font-size: 11px;
+  letter-spacing: 0.07em;
+}
+
+.counter {
+  margin: 0;
+  font-size: 10px;
+}
+
+@media (max-width: 720px) {
+  body {
+    overflow: auto;
+  }
+
+  .stage {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  #gameCanvas {
+    position: fixed;
+  }
+
+  .stage-header {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .text-layers {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    transform: none;
+    width: min(600px, 94vw);
+    margin: clamp(120px, 20vw, 160px) auto clamp(80px, 15vw, 140px);
+  }
+
+  .hud {
+    position: static;
+    transform: none;
+    margin-bottom: 24px;
+  }
+}

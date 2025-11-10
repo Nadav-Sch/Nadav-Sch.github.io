@@ -1,0 +1,83 @@
+body{
+background-color: blue;
+
+}
+
+.large-outline{
+    width: 90%;
+    max-width: 800px;
+    border: 6px solid yellow;
+    background-color: #000099;
+    padding: 20px;
+    box-shadow: 0 0 20px yellow, inset 0 0 10px yellow;
+    border-radius: 5px;
+}
+
+.small-outline{
+    border: 2px solid yellow;
+    background-color: #0000AA;
+    padding: 15px;
+    margin-bottom: 20px;
+    text-align: left;
+    line-height: 1.4;
+    font-size: 16px;
+}
+
+h1 {
+font-family: Sixtyfour;
+text-align: center;
+color: yellow;
+}
+
+h2 {
+font-family: Tiny5, monospace;
+text-align: left;
+color: yellow;
+}
+
+img {
+    border-radius: 5px;
+    border: 4px solid grey;
+}
+
+#textLines {
+    margin: 5px 0;
+    font-family: "B612 Mono", monospace;
+    font-size: 16px;
+    color: #FFFF01;
+    text-shadow: 1px 1px #000;
+}
+
+#textLines p{
+    margin: 20px 0;
+    border-right: 2px solic;
+}
+.button {
+ background-color: #FFFF01;
+ color: #0000FE;
+ font-family: "Tiny5", sans-serif;
+ font-size: 16px;
+ border: 2px solid transparent;
+ border-radius: 0;
+ padding: 10px 24px;
+ cursor: pointer;
+ transition: all 0.3s ease;
+ text-shadow: 1px 1px #000;
+ display: inline-block;
+ margin-top: 10px;
+}
+
+
+.button:hover {
+ border-color: #FFFF01;
+ background-color: #0000FE;
+ color: #FFFF01;
+}
+
+.instructions{
+    font-family: Tiny5, monospace;
+    font-size: medium;
+    color:#FFFF01;
+    margin-top: 10px;
+}
+

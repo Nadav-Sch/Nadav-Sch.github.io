@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Thoughts</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        margin: 0;
+        min-height: 100%;
+        background-color: #120f1b;
+        background-image: radial-gradient(circle at top, #352f44, #120f1b 55%);
+        background-attachment: fixed;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        background-color: transparent;
+        color: #f7f5ff;
+        padding: clamp(24px, 5vw, 64px) clamp(16px, 5vw, 60px) clamp(40px, 6vw, 80px);
+      }
+
+      .nav-arrow {
+        border: 1px solid rgba(247, 245, 255, 0.6);
+        background: transparent;
+        border-radius: 999px;
+        padding: 6px 16px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        color: inherit;
+        cursor: pointer;
+        margin-bottom: 24px;
+      }
+
+      .nav-arrow-bottom {
+        display: block;
+        margin-left: auto;
+        margin-right: 0;
+        margin-top: clamp(32px, 6vw, 60px);
+        width: fit-content;
+        padding: 8px 18px;
+      }
+
+      h1 {
+        margin: clamp(40px, 10vw, 120px) auto;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: clamp(64px, 12vw, 180px);
+        font-weight: 800;
+        max-width: 70vw;
+        line-height: 1.1;
+      }
+
+      .timeline {
+        position: relative;
+        margin: clamp(200px, 45vw, 380px) auto;
+        max-width: 960px;
+        padding-left: clamp(20px, 4vw, 60px);
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: clamp(8px, 1.8vw, 30px);
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
+      }
+
+      .thought-card {
+        position: relative;
+        margin-bottom: clamp(180px, 45vh, 320px);
+        padding: clamp(22px, 4vw, 38px);
+        border-radius: 28px;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        box-shadow: 0 26px 60px rgba(0, 0, 0, 0.35);
+        opacity: 0;
+        transform: translateY(60px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .thought-card.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .thought-card::before {
+        content: "";
+        position: absolute;
+        left: calc(-1 * clamp(36px, 6vw, 70px));
+        top: 24px;
+        width: clamp(16px, 3vw, 24px);
+        height: clamp(16px, 3vw, 24px);
+        border-radius: 50%;
+        background: rgba(255, 160, 169, 0.9);
+        box-shadow: 0 0 0 6px rgba(255, 160, 169, 0.15);
+      }
+
+      .thought-card h2 {
+        margin-top: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-size: 18px;
+      }
+
+      .thought-card p {
+        margin: 0 0 14px 0;
+        line-height: 1.75;
+        color: rgba(247, 245, 255, 0.9);
+      }
+
+      .thought-card p:last-child {
+        margin-bottom: 0;
+      }
+
+      .nav-arrow-bottom {
+        display: block;
+        margin-left: auto;
+        margin-right: 0;
+        margin-top: clamp(-20px, -4vw, -8px);
+        width: fit-content;
+        padding: 6px 16px;
+        border: 1px solid rgba(247, 245, 255, 0.6);
+        border-radius: 999px;
+        background: transparent;
+        letter-spacing: 0.12em;
+        transform: translateY(-20px);
+      }
+    </style>
+  </head>
+  <body>
+    <button class="nav-arrow" type="button" onclick="window.location.href='sierra/index.html'" aria-label="Back to Sierra">←</button>
+    <h1>Thoughts</h1>
+
+    <section class="timeline">
+      <article class="thought-card" data-label="01">
+        <h2>Nadav</h2>
+        <p>What stood out to me was how BlackLash takes a simple arcade-style game and turns it into a message.</p>
+        <p>At first it just felt like a normal shooter, then I realized what the characters and enemies actually represented.</p>
+        <p>That moment made me see how Mongrel used gameplay to talk about racism and stereotypes in gaming.</p>
+        <p>It was a little uncomfortable but in a good way. It makes you think instead of just play.</p>
+        <p>I liked how it shows that even small design choices can reflect bigger social issues.</p>
+        <p>Overall, it changed how I look at games. Not just as fun, but as something that can make a statement or challenge people.</p>
+      </article>
+
+      <article class="thought-card" data-label="02">
+        <h2>Sierra</h2>
+        <p>As someone who loves games and values representation, I’m always paying attention to how non-white characters show up or don’t in gaming spaces, so BLACKLASH hit me on a deeper level.</p>
+        <p>At first, it stood out to me because it looked fun and interactive, and I didn’t immediately grasp its message beyond the surface.</p>
+        <p>But once I read about the context, the stereotypes it pushes back against, and Mongrel's intention, it felt affirming to see a game from 1998 confronting issues that are still so present today.</p>
+        <p>There was something powerful about seeing Blackness not as a side character, a joke, or a target, but as the force fighting back.</p>
+        <p>It made me appreciate BLACKLASH not just as a game, but as an early act of resistance, one that made space for players like me long before the industry cared to.</p>
+      </article>
+
+      <article class="thought-card" data-label="03">
+        <h2>Ryan</h2>
+        <p>BlackLash felt stripped down but sharp. You immediately understand who the enemies are and why you’re fighting them.</p>
+        <p>I liked that the message came through the gameplay instead of a cutscene.</p>
+        <p>It made me want to see more games put their politics right on the surface.</p>
+      </article>
+
+      <p style="text-align: center; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(247,245,255,0.6); margin-top: 48px;">
+        End.
+      </p>
+    </section>
+
+    <button class="nav-arrow nav-arrow-bottom" type="button" onclick="window.location.href='index.html'" aria-label="Back to Home">
+      Home
+    </button>
+
+    <script>
+      const cards = document.querySelectorAll('.thought-card');
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+            } else {
+              entry.target.classList.remove('is-visible');
+            }
+          });
+        },
+        { threshold: 0.75 }
+      );
+      cards.forEach((card) => observer.observe(card));
+    </script>
+  </body>
+</html>
