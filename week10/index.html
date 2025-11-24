@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Rumor Machine · Week 10</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=B612+Mono:wght@400;700&family=Sixtyfour&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="rumor.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <a class="home-link" href="../index.html">← Home</a>
+        <h1>The Rumor Machine</h1>
+        <p class="lede">Plant a line, hit spread, and see how it comes back altered.</p>
+      </header>
+
+      <section class="panel">
+        <label class="field">
+          <span>Plant your rumor</span>
+          <textarea id="seedInput" rows="3" placeholder="ex: The city will shut down Main Street for a secret festival."></textarea>
+        </label>
+        <div class="actions">
+          <button id="simulate" type="button" class="primary">Spread</button>
+          <button id="reset" type="button">Clear</button>
+        </div>
+        <div class="output" id="finalText">—</div>
+      </section>
+    </main>
+    <script src="rumor.js"></script>
+  </body>
+</html>

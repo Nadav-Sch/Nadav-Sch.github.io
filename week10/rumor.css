@@ -1,0 +1,102 @@
+:root {
+  --ink: #39ff14;
+  --muted: #2fcf0f;
+  --panel: #000;
+  --stroke: #39ff14;
+  --font: "B612 Mono", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font);
+  color: var(--ink);
+  background: #000;
+}
+
+.page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 48px 24px 64px;
+}
+
+.home-link {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.hero h1 {
+  margin: 12px 0 8px;
+  font-size: clamp(28px, 5vw, 38px);
+  letter-spacing: -0.01em;
+  font-family: "Sixtyfour", monospace;
+}
+
+.hero .lede {
+  margin: 0;
+  color: var(--muted);
+}
+
+.panel {
+  margin-top: 18px;
+  background: var(--panel);
+  border: 1px solid var(--stroke);
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.field span {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--muted);
+}
+
+textarea {
+  width: 100%;
+  background: #000;
+  color: var(--ink);
+  border: 1px solid var(--stroke);
+  border-radius: 12px;
+  padding: 12px;
+  font: inherit;
+  min-height: 72px;
+}
+
+button {
+  font: inherit;
+  border-radius: 999px;
+  border: 1px solid var(--stroke);
+  padding: 10px 16px;
+  cursor: pointer;
+  color: var(--ink);
+  background: #000;
+  transition: background 0.1s ease, border-color 0.1s ease;
+}
+
+button.primary {
+  background: var(--ink);
+  color: #000;
+  border-color: var(--ink);
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.output {
+  margin-top: 24px;
+  padding: 14px;
+  border: 1px dashed var(--stroke);
+  border-radius: 12px;
+  background: #000;
+  min-height: 48px;
+}
