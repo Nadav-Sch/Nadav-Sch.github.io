@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Week 9 · Algorithmic Mirror</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=B612+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="week9.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="home" href="../index.html">Home</a>
+    </header>
+
+    <main class="split">
+      <section class="feed" aria-label="User feed">
+        <form class="search" role="search" aria-label="Search">
+          <label class="search-label" for="query">Search</label>
+          <input id="query" type="search" placeholder="Search the web" />
+          <button type="button" id="searchButton">Search</button>
+        </form>
+        <h1 class="results-title">Results</h1>
+      </section>
+
+      <section class="brain" aria-label="Algorithm narration">
+        <div class="brain-header">
+          <p class="eyebrow">Algorithm brain</p>
+          <div class="metrics"></div>
+        </div>
+        <div class="stream" id="statusText"></div>
+        <ul class="log" id="decisionLog" aria-live="polite"></ul>
+      </section>
+    </main>
+
+    <script src="week9.js"></script>
+  </body>
+</html>

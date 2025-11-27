@@ -10,6 +10,14 @@
   box-sizing: border-box;
 }
 
+:root {
+  --ink: #39ff14;
+  --muted: #2fcf0f;
+  --panel: #000;
+  --stroke: #39ff14;
+  --font: "B612 Mono", monospace;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
