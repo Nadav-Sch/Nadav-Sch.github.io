@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semester Audit &amp; Final Project Proposal</title>
+  <style>
+    :root {
+      --bg: #f8f1e7;
+      --card: #fffaf3;
+      --text: #2f2a28;
+      --muted: #736b66;
+      --accent: #ec7357;
+      --shadow: 0 10px 22px rgba(76, 56, 42, 0.14);
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 36px 24px 360px;
+      font-family: "Manrope", "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 3vw, 34px);
+      letter-spacing: -0.02em;
+      margin-left: 2px;
+    }
+
+    .back-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: rgba(236, 115, 87, 0.1);
+      transition: all 0.15s ease;
+      border: 1px solid rgba(236, 115, 87, 0.18);
+    }
+
+    .back-link:hover {
+      background: rgba(236, 115, 87, 0.15);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    @media (max-width: 960px) {
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 640px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border: 1px solid rgba(47, 42, 40, 0.08);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(76, 56, 42, 0.16);
+      border-color: rgba(236, 115, 87, 0.22);
+    }
+
+    .card a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 18px;
+      padding-top: 8px;
+      line-height: 1.35;
+    }
+
+    .card a:hover {
+      color: var(--accent);
+    }
+
+    .image-box {
+      border: 2px dashed rgba(236, 115, 87, 0.35);
+      border-radius: 12px;
+      height: 240px;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.5);
+      text-align: center;
+      padding: 14px;
+      letter-spacing: 0.01em;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .image-box.has-image {
+      border-style: solid;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: transparent;
+    }
+
+    .image-box.has-image::after { content: none; }
+
+    .notes {
+      margin-top: 28px;
+      padding: 20px;
+      background: #fffaf3;
+      border: 1px solid rgba(47, 42, 40, 0.08);
+      border-radius: 12px;
+      box-shadow: 0 10px 22px rgba(76, 56, 42, 0.12);
+      display: grid;
+      gap: 14px;
+    }
+
+    .notes h2 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: -0.01em;
+    }
+
+    .notes ul {
+      margin: 0;
+      padding-left: 22px;
+      color: var(--muted);
+      line-height: 1.65;
+      display: grid;
+      gap: 10px;
+    }
+
+    .proposal {
+      margin-top: 260px;
+      text-align: center;
+      display: grid;
+      grid-template-columns: 320px 1fr 320px;
+      gap: 22px;
+      align-items: center;
+    }
+
+    @media (max-width: 1000px) {
+      .proposal { grid-template-columns: 1fr; }
+    }
+
+    .proposal h2 {
+      margin: 0;
+      font-size: clamp(26px, 2.8vw, 32px);
+      letter-spacing: -0.02em;
+      font-weight: 800;
+      width: 100%;
+      grid-column: 1 / -1;
+    }
+
+    .proposal-box {
+      margin: 0;
+      padding: 18px 20px;
+      max-width: 100%;
+      background: #fffaf3;
+      border: 1px solid rgba(47, 42, 40, 0.08);
+      border-radius: 12px;
+      box-shadow: 0 10px 22px rgba(76, 56, 42, 0.12);
+      color: var(--muted);
+      line-height: 1.65;
+      text-align: left;
+    }
+
+    .proposal-box h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+
+    .proposal-box ul {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+      line-height: 1.6;
+      display: grid;
+      gap: 8px;
+    }
+
+    .proposal-visual {
+      width: 100%;
+      max-width: 320px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 22px rgba(76, 56, 42, 0.12);
+      border: 1px solid rgba(47, 42, 40, 0.08);
+      background: #fffaf3;
+    }
+
+    .proposal-visual img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Semester Audit &amp; Final Project Proposal</h1>
+    <a class="back-link" href="index.html">&#8592; Home</a>
+  </header>
+
+  <div class="grid">
+    <div class="card">
+      <a href="week1.html">As We May Think Reading Response</a>
+      <div class="image-box has-image" style="background-image: url('assets/website-images/week1ss.png');" aria-label="Week 1 screenshot"></div>
+    </div>
+
+    <div class="card">
+      <a href="week2.html">Long Live The Web Reading Response</a>
+      <div class="image-box has-image" style="background-image: url('assets/website-images/week2ss.png');" aria-label="Week 2 screenshot"></div>
+    </div>
+
+    <div class="card">
+      <a href="week3.html">Recreating Dada</a>
+      <div class="image-box has-image" style="background-image: url('assets/website-images/week3ss.png');" aria-label="Week 3 screenshot"></div>
+    </div>
+
+    <div class="card">
+      <a href="week4/week4.html">The Medium is the Message Reading Response</a>
+      <div class="image-box has-image" style="background-image: url('assets/website-images/week4ss.png');" aria-label="Week 4 screenshot"></div>
+    </div>
+
+    <div class="card">
+      <a href="week5/week5.html">Ways of Seeing Reading Response</a>
+      <div class="image-box has-image" style="background-image: url('assets/website-images/week5ss.png');" aria-label="Week 5 screenshot"></div>
+    </div>
+
+    <div class="card">
+      <a href="week6/week6.html">Whole Earth Archive</a>
+      <div class="image-box has-image" style="background-image: url('assets/website-images/week6ss.png');" aria-label="Week 6 screenshot"></div>
+    </div>
+
+    <div class="card">
+      <a href="week8/blacklash/index.html">Blacklash Recreation</a>
+      <div class="image-box has-image" style="background-image: url('assets/website-images/week8ss.png');" aria-label="Week 8 screenshot"></div>
+    </div>
+
+    <div class="card">
+      <a href="week9/index.html">The Algorithm Never Forgets</a>
+      <div class="image-box has-image" style="background-image: url('assets/website-images/week9ss.png');" aria-label="Week 9 screenshot"></div>
+    </div>
+
+    <div class="card">
+      <a href="week10/week10.html">The Rumor Machine</a>
+      <div class="image-box has-image" style="background-image: url('assets/website-images/week10ss.png');" aria-label="Week 10 screenshot"></div>
+    </div>
+  </div>
+
+  <section class="notes">
+    <h2>Highlights</h2>
+    <ul>
+      <li>I have some web design and JS background so I pushed more and more beyond my comfort zone every week in order to grow</li>
+      <li>Trying and having new interactions run successfully felt rewarding</li>
+      <li>Building the Blacklash game was my favorite project this semester</li>
+    </ul>
+
+    <h2>Challenges</h2>
+    <ul>
+      <li>Rumor Machine generative code outside comfort zone and hard to get sensible output</li>
+      <li>Medium is the Message shaking box interaction was wonky to get working smoothly</li>
+    </ul>
+  </section>
+
+  <section class="proposal">
+    <h2>Final Project Proposal</h2>
+    <div class="proposal-visual">
+      <img src="assets/website-images/pkexample.gif" alt="Parkour Playlist example animation">
+    </div>
+    <div class="proposal-box">
+      <h3>Parkour Playlist</h3>
+      <ul>
+        <li>Side-scrolling parkour where you discover different songs by moving through the level</li>
+        <li>Buttons/checkpoints play new tracks, shift colors, and show song cards when you land on them</li>
+        <li>The level becomes an interactive playlist you explore by running and jumping</li>
+        <li>Simple mechanics (run, jump, collide) plus interactive audio, color and animation tied to each song, clean responsive look</li>
+        <li>Goal: make finding music feel playful and physical, with movement as the interface</li>
+      </ul>
+    </div>
+    <div class="proposal-visual">
+      <img src="assets/website-images/pkexample2.png" alt="Parkour Playlist secondary example">
+    </div>
+  </section>
+</body>
+</html>
