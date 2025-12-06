@@ -237,7 +237,7 @@ const bullets = [];
 const songs = [];
 const fogBlobs = [];
 let camera = { x: 0, y: 0 };
-const fireCooldown = 220;
+const fireCooldown = 120;
 let lastFire = 0;
 let bgColor = "#000";
 let currentAudio = null;
@@ -252,6 +252,8 @@ let analyser = null;
 let sourceNode = null;
 let freqData = null;
 const audioCache = new Map();
+let touchActive = false;
+let touchPos = { x: 0, y: 0 };
 
 const physics = {
   accel: 0.6,
@@ -294,7 +296,7 @@ window.addEventListener("resize", resizeCanvas);
 
 function preloadAudio() {
   tracks.forEach((track) => {
-    const path = track.audio.replace(/^music\//i, "music/");
+    const path = track.audio.replace(new RegExp("^music/", "i"), "music/");
     if (!audioCache.has(path)) {
       const a = new Audio(path);
       a.preload = "auto";
@@ -307,7 +309,7 @@ function preloadAudio() {
 function seedFog() {
   fogBlobs.length = 0;
   const clusters = 9;
-  const blobsPerCluster = 4 + Math.floor(Math.random() * 2); // 4-5 each
+  const blobsPerCluster = 4 + Math.floor(Math.random() * 2);
   const clusterRadius = 200;
   const clusterCenters = [];
   const cols = Math.ceil(Math.sqrt(clusters));
@@ -420,7 +422,10 @@ canvas.addEventListener("mousemove", (e) => {
   mouse.y = e.clientY;
 });
 
-canvas.addEventListener("click", tryFire);
+canvas.addEventListener("click", (e) => {
+  const target = { x: camera.x + e.clientX, y: camera.y + e.clientY };
+  tryFire(target);
+});
 ui.playPause.addEventListener("click", togglePlayPause);
 ui.stop.addEventListener("click", () => {
   stopCurrent();
@@ -431,6 +436,34 @@ ui.progress.addEventListener("click", (e) => {
   const ratio = clamp((e.clientX - rect.left) / rect.width, 0, 1);
   currentAudio.currentTime = ratio * (currentAudio.duration || 0);
   updateUIFromAudio();
+});
+
+function updateTouchFromEvent(e) {
+  const t = e.touches[0];
+  if (!t) return;
+  touchPos.x = t.clientX;
+  touchPos.y = t.clientY;
+}
+
+canvas.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  updateTouchFromEvent(e);
+  touchActive = true;
+}, { passive: false });
+
+canvas.addEventListener("touchmove", (e) => {
+  e.preventDefault();
+  updateTouchFromEvent(e);
+}, { passive: false });
+
+["touchend", "touchcancel"].forEach((ev) => {
+  canvas.addEventListener(ev, (e) => {
+    if (e.touches.length === 0) {
+      touchActive = false;
+    } else {
+      updateTouchFromEvent(e);
+    }
+  });
 });
 
 let isScrubbing = false;
@@ -458,30 +491,61 @@ function scrub(e) {
   updateUIFromAudio();
 }
 
-function tryFire() {
+function tryFire(target) {
   const now = performance.now();
   if (now - lastFire < fireCooldown) return;
   lastFire = now;
-  const angle = player.angle;
-  const speed = 12;
+  let angle = player.angle;
+  if (target) {
+    const dx = target.x - player.x;
+    const dy = target.y - player.y;
+    if (Math.abs(dx) > 0.001 || Math.abs(dy) > 0.001) {
+      angle = Math.atan2(dy, dx);
+    }
+  }
+  const speed = 16;
   const barrelLen = player.r * 1.1;
-  const muzzleOffset = player.r + barrelLen * 0.75; // tip matches visual muzzle
+  const muzzleOffset = player.r + barrelLen * 0.75;
   const startX = player.x + Math.cos(angle) * muzzleOffset;
   const startY = player.y + Math.sin(angle) * muzzleOffset;
+  const avgFrameMs = 16.67;
+  let lifeMs;
+  if (target) {
+    const dist = Math.hypot(target.x - startX, target.y - startY);
+    lifeMs = Math.max(120, Math.min(2000, (dist * avgFrameMs) / speed));
+  } else {
+    const desiredDistance = Math.max(0, (canvas.height * 0.5 - player.r * 2) * 1.4);
+    lifeMs = Math.max(300, Math.min(2200, (desiredDistance * avgFrameMs) / speed));
+  }
   bullets.push({
     x: startX,
     y: startY,
     vx: Math.cos(angle) * speed,
     vy: Math.sin(angle) * speed,
-    life: 900
+    life: lifeMs
   });
 }
 
 function updatePlayer() {
+  let touchDX = 0;
+  let touchDY = 0;
+  if (touchActive) {
+    const screenPX = player.x - camera.x;
+    const screenPY = player.y - camera.y;
+    touchDX = touchPos.x - screenPX;
+    touchDY = touchPos.y - screenPY;
+    const dist = Math.hypot(touchDX, touchDY) || 1;
+    touchDX /= dist;
+    touchDY /= dist;
+  }
   if (keys.left) player.vx -= physics.accel;
   if (keys.right) player.vx += physics.accel;
   if (keys.up) player.vy -= physics.accel;
   if (keys.down) player.vy += physics.accel;
+  if (touchActive) {
+    player.vx += touchDX * physics.accel;
+    player.vy += touchDY * physics.accel;
+  }
 
   player.vx *= physics.friction;
   player.vy *= physics.friction;
@@ -510,10 +574,53 @@ function updateBullets(dt) {
     b.life -= dt;
   }
   for (let i = bullets.length - 1; i >= 0; i--) {
-    if (bullets[i].life <= 0 || bullets[i].x < -100 || bullets[i].x > world.width + 100 || bullets[i].y < -100 || bullets[i].y > world.height + 100) {
+    const b = bullets[i];
+    if (b.life <= 0 || b.x < -100 || b.x > world.width + 100 || b.y < -100 || b.y > world.height + 100) {
+      spawnBulletPop(b);
       bullets.splice(i, 1);
     }
   }
+}
+
+function spawnBulletPop(b) {
+  const starIsThird = Math.random() < 0.3333;
+  const ringTint = starIsThird
+    ? projectileColor
+    : currentTrack
+      ? currentTrack.colors.secondary
+      : particleColor;
+  const starTint = starIsThird ? projectileColor : ringTint;
+  particles.push({
+    x: b.x,
+    y: b.y,
+    r: 2,
+    vx: 0,
+    vy: 0,
+    baseRadius: 0,
+    wobble: 0,
+    speed: 0,
+    isThird: false,
+    locked: false,
+    flare: 1,
+    flareTint: ringTint,
+    life: 600,
+    popPulse: true
+  });
+  particles.push({
+    x: b.x,
+    y: b.y,
+    r: 1.8 + Math.random() * 2.2,
+    vx: (Math.random() - 0.5) * 0.5,
+    vy: (Math.random() - 0.5) * 0.5,
+    baseRadius: 0,
+    wobble: 0.05,
+    speed: 0.02,
+    isThird: starIsThird,
+    locked: false,
+    flare: 0.9,
+    flareTint: starTint,
+    popOnce: true
+  });
 }
 
 function stopCurrent() {
@@ -574,7 +681,7 @@ function playSong(song) {
   stopCurrent();
   currentTrack = song.track;
   songs.forEach((s) => { s.locked = s.track === song.track; });
-  const audioPath = song.track.audio.replace(/^music\//i, "music/");
+  const audioPath = song.track.audio.replace(new RegExp("^music/", "i"), "music/");
   if (audioCache.has(audioPath)) {
     currentAudio = audioCache.get(audioPath).cloneNode(true);
   } else {
@@ -758,7 +865,6 @@ function updateSongs(dt) {
             b.y -= ny * sep;
           }
         }
-        // Momentum swap along the collision normal so faster one transfers speed
         const relVx = (a.vx || 0) - (b.vx || 0);
         const relVy = (a.vy || 0) - (b.vy || 0);
         const closing = relVx * nx + relVy * ny;
@@ -793,7 +899,22 @@ function updateParticles(dt) {
     if (p.y < -50) p.y = world.height + 50;
     if (p.y > world.height + 50) p.y = -50;
     p.flare = Math.max(0, p.flare - 0.08 * dtScale);
+    if (p.popPulse && typeof p.life === "number") {
+      p.life -= dt;
+      if (p.life <= 0) p.dead = true;
+    }
+    if (p.popFade && typeof p.life === "number") {
+      p.life -= dt;
+      if (p.life <= 0) p.dead = true;
+    }
+    if (p.popPulse && typeof p.life === "number") {
+      const t = Math.max(0, p.life) / 600;
+      p.flare = t;
+    }
     if (p.flare < 0.01) p.flareTint = null;
+  }
+  for (let i = particles.length - 1; i >= 0; i--) {
+    if (particles[i].dead) particles.splice(i, 1);
   }
 }
 
@@ -802,7 +923,6 @@ function updateFog(dt) {
   for (const f of fogBlobs) {
     f.x += f.vx * step;
     f.y += f.vy * step;
-    // gentle wander with noticeable drift
     f.vx += (Math.random() - 0.5) * 0.02;
     f.vy += (Math.random() - 0.5) * 0.02;
     f.vx = clamp(f.vx, -0.35, 0.35);
@@ -826,6 +946,10 @@ function updateAngle() {
 }
 
 function update(dt, now) {
+  if (touchActive) {
+    mouse.x = touchPos.x;
+    mouse.y = touchPos.y;
+  }
   updatePlayer();
   updateSongs(dt);
   updateParticles(dt);
@@ -835,6 +959,10 @@ function update(dt, now) {
   updateAngle();
   updateCamera();
   updateUIFromAudio();
+  if (touchActive) {
+    const target = { x: camera.x + touchPos.x, y: camera.y + touchPos.y };
+    tryFire(target);
+  }
 }
 
 function drawGrid() {
@@ -864,6 +992,24 @@ function drawParticles(freqData, reacting) {
     const sy = p.y - camera.y;
     if (sx < -50 || sx > canvas.width + 50 || sy < -50 || sy > canvas.height + 50) continue;
     const amp = reacting && freqData ? freqData[i % freqData.length] / 255 : 0;
+    if (p.popPulse) {
+      const total = 600;
+      const rem = Math.max(0, p.life || 0);
+      const prog = 1 - clamp(rem / total, 0, 1);
+      const ringR = (p.popPulseBase || p.r) + prog * 65;
+      const alpha = Math.max(0, 1 - prog);
+      const tint = p.flareTint || particleColor;
+      const fc = hexToRgb(tint);
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.strokeStyle = `rgba(${fc.r},${fc.g},${fc.b},1)`;
+      ctx.lineWidth = 5;
+      ctx.beginPath();
+      ctx.arc(sx, sy, ringR, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.restore();
+      continue;
+    }
     const flareScale = 1 + p.flare * 0.6;
     const flareAlpha = p.flare * 0.6;
     const flareColor = p.flareTint || (currentTrack ? currentTrack.colors.secondary : playerStroke);
@@ -1044,7 +1190,6 @@ function draw() {
     const ux = b.vx / mag;
     const uy = b.vy / mag;
 
-    // Tapered ribbon trail
     const tailLen = 70;
     const headW = 10;
     const tailW = 0;
@@ -1069,30 +1214,27 @@ function draw() {
     ctx.fill();
     ctx.restore();
 
-    // Main projectile (secondary color only)
     ctx.fillStyle = particleColor;
     ctx.beginPath();
-    ctx.arc(bx, by, 9, 0, Math.PI * 2);
+    ctx.arc(bx, by, 7.5, 0, Math.PI * 2);
     ctx.fill();
   }
 
   const px = player.x - camera.x;
   const py = player.y - camera.y;
 
-  // Cannon (pipe-like) drawn under player so the player sits on top
   ctx.save();
   ctx.translate(px, py);
   ctx.rotate(player.angle);
-  const barrelW = player.r * 0.9; // slimmer
-  const barrelLen = player.r * 0.8; // shorter
-  const startX = player.r - barrelLen * 0.25; // quarter inside
-  const endX = startX + barrelLen;            // muzzle
+  const barrelW = player.r * 0.9;
+  const barrelLen = player.r * 0.8;
+  const startX = player.r - barrelLen * 0.25;
+  const endX = startX + barrelLen;
   ctx.fillStyle = projectileColor;
   ctx.beginPath();
   ctx.rect(startX, -barrelW / 2, barrelLen, barrelW);
   ctx.closePath();
   ctx.fill();
-  // thick rim like a pipe lip
   const rimW = barrelW * 1.15;
   const rimH = Math.max(8, barrelW * 0.25);
   const rimRadius = Math.min(rimH * 0.6, 10);

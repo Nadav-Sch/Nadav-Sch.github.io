@@ -154,3 +154,51 @@ canvas {
 .ui-spacer {
   min-width: 220px;
 }
+
+@media (max-width: 768px) {
+  #player-ui {
+    padding: 8px 10px;
+    grid-template-columns: 160px 1fr 160px;
+    font-size: 12px;
+  }
+  #player-ui button {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    top: 0;
+    padding-top: 0;
+  }
+  #stop-track {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+  }
+  #stop-track span {
+    top: -1px;
+    font-size: 12px;
+  }
+  #player-ui .progress {
+    width: 200px;
+    height: 5px;
+  }
+  #player-ui .progress .thumb {
+    width: 8px;
+    height: 8px;
+  }
+  #player-ui .time {
+    min-width: 90px;
+    font-size: 12px;
+  }
+  .ui-left {
+    min-width: 160px;
+  }
+  .ui-spacer {
+    min-width: 160px;
+  }
+  .ui-meta .title {
+    font-size: 12px;
+  }
+  .ui-meta .artist {
+    font-size: 10px;
+  }
+}
