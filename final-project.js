@@ -9,7 +9,7 @@ const world = {
 const tracks = [
   {
     name: "Redecorate",
-    audio: "music/Twenty One Pilots - Redecorate (Lyric Video).mp3",
+    audio: "music/Twenty One Pilots - Redecorate (Lyric Video)(1).mp3",
     cover: "albumcovers/Redecorate.png",
     colors: { primary: "#ee88af", secondary: "#81c1cb" },
     border: "#F3DE09",
@@ -17,7 +17,7 @@ const tracks = [
   },
   {
     name: "Under Cover of Darkness",
-    audio: "music/The Strokes - Under Cover Of Darkness.mp3",
+    audio: "music/The Strokes - Under Cover Of Darkness(1).mp3",
     cover: "albumcovers/UnderCoverOfDarkness.png",
     colors: { primary: "#FFD631", secondary: "#EA53A3" },
     border: "#3D7BC4",
@@ -25,7 +25,7 @@ const tracks = [
   },
   {
     name: "November Has Come",
-    audio: "music/Gorillaz - November Has Come - Demon Days.mp3",
+    audio: "music/Gorillaz - November Has Come - Demon Days(1).mp3",
     cover: "albumcovers/NovemberHasCome.png",
     colors: { primary: "#0C1A2D", secondary: "#FFFFFF" },
     border: "#B86A6F",
@@ -33,7 +33,7 @@ const tracks = [
   },
   {
     name: "Black Madonna",
-    audio: "music/Cage The Elephant - Black Madonna (Official Audio).mp3",
+    audio: "music/Cage The Elephant - Black Madonna (Official Audio)(1).mp3",
     cover: "albumcovers/BlackMadonna.png",
     colors: { primary: "#1BB6D9", secondary: "#E72F2D" },
     border: "#EDEAE5",
@@ -41,7 +41,7 @@ const tracks = [
   },
   {
     name: "Just",
-    audio: "music/Radiohead - Just [HQ].mp3",
+    audio: "music/Radiohead - Just [HQ](1).mp3",
     cover: "albumcovers/Just.png",
     colors: { primary: "#000000", secondary: "#f0d077" },
     border: "#ff0000",
@@ -49,7 +49,7 @@ const tracks = [
   },
   {
     name: "This Charming Man",
-    audio: "music/This Charming Man (2008 Remaster).mp3",
+    audio: "music/This Charming Man (2008 Remaster)(1).mp3",
     cover: "albumcovers/ThisCharmingMan.png",
     colors: { primary: "#9f819b", secondary: "#680b42" },
     border: "#7B5274",
@@ -57,7 +57,7 @@ const tracks = [
   },
   {
     name: "Live Forever",
-    audio: "music/Live Forever.mp3",
+    audio: "music/Live Forever(1).mp3",
     cover: "albumcovers/LiveForever.png",
     colors: { primary: "#F4D27F", secondary: "#6FA6C4" },
     border: "#A7A58C",
@@ -65,7 +65,7 @@ const tracks = [
   },
   {
     name: "Get Got",
-    audio: "music/Death Grips - Get Got 4.mp3",
+    audio: "music/Death Grips - Get Got 4(1).mp3",
     cover: "albumcovers/GetGot.png",
     colors: { primary: "#FFFFFF", secondary: "#000000" },
     border: "#5A5A5C",
@@ -73,7 +73,7 @@ const tracks = [
   },
   {
     name: "I THINK",
-    audio: "music/Tyler, The Creator - I THINK 4.mp3",
+    audio: "music/Tyler, The Creator - I THINK 4(1).mp3",
     cover: "albumcovers/ITHINK.png",
     colors: { primary: "#f7b4c6", secondary: "#423e3d" },
     border: "#A39F8F",
@@ -81,7 +81,7 @@ const tracks = [
   },
   {
     name: "Like You Do",
-    audio: "music/Like You Do 4.mp3",
+    audio: "music/Like You Do 4(1).mp3",
     cover: "albumcovers/LikeYouDo.png",
     colors: { primary: "#2A1A1A", secondary: "#E02622" },
     border: "#0F0505",
@@ -89,7 +89,7 @@ const tracks = [
   },
   {
     name: "Sober to Death",
-    audio: "music/Car Seat Headrest - _Sober to Death_ (Official Audio) 4.mp3",
+    audio: "music/Car Seat Headrest - _Sober to Death_ (Official Audio) 4(1).mp3",
     cover: "albumcovers/SoberToDeath.png",
     colors: { primary: "#FFFFFF", secondary: "#000000" },
     border: "#7E7E7E",
@@ -97,7 +97,7 @@ const tracks = [
   },
   {
     name: "Back To Me",
-    audio: "music/SpotiDownloader.com - Back To Me - The Marías.mp3",
+    audio: "music/SpotiDownloader.com - Back To Me - The Marías(1).mp3",
     cover: "albumcovers/Cover of Back To Me by The Marías.jpg",
     colors: { primary: "#EDEDED", secondary: "#1E1D1F" },
     border: "#C6AEB2",
@@ -105,7 +105,7 @@ const tracks = [
   },
   {
     name: "Entombed",
-    audio: "music/entombed.mp3",
+    audio: "music/entombed(1).mp3",
     cover: "albumcovers/Cover of Entombed by Deftones.jpg",
     colors: { primary: "#0D0F10", secondary: "#D3421C" },
     border: "#3C3A28",
@@ -113,7 +113,7 @@ const tracks = [
   },
   {
     name: "Letter in a Suitcase",
-    audio: "music/letterinasuitcase.mp3",
+    audio: "music/letterinasuitcase(1).mp3",
     cover: "albumcovers/Cover of Letter in a Suitcase by Anarbor.jpg",
     colors: { primary: "#5AB7FF", secondary: "#F4806C" },
     border: "#FCE0B7",
@@ -121,7 +121,7 @@ const tracks = [
   },
   {
     name: "SIXFT",
-    audio: "music/sixft.mp3",
+    audio: "music/sixft(1).mp3",
     cover: "albumcovers/Cover of SIXFT by I DONT KNOW HOW BUT THEY FOUND ME.jpg",
     colors: { primary: "#FF7F22", secondary: "#8EC8F6" },
     border: "#C8B8A4",
@@ -129,7 +129,7 @@ const tracks = [
   },
   {
     name: "Wait & See",
-    audio: "music/waitandsee.mp3",
+    audio: "music/waitandsee(1).mp3",
     cover: "albumcovers/Cover of Wait & See by Saint Motel.jpg",
     colors: { primary: "#14284B", secondary: "#E47A88" },
     border: "#F2CFA8",
@@ -137,7 +137,7 @@ const tracks = [
   },
   {
     name: "All My Life",
-    audio: "music/SpotiDown.App - All My Life - Foo Fighters.mp3",
+    audio: "music/SpotiDown.App - All My Life - Foo Fighters(1).mp3",
     cover: "albumcovers/SpotiDown.App - All My Life - Foo Fighters.jpeg",
     colors: { primary: "#FFFFFF", secondary: "#000000" },
     border: "#C91F1F",
@@ -145,7 +145,7 @@ const tracks = [
   },
   {
     name: "Faint",
-    audio: "music/SpotiDown.App - Faint - Linkin Park.mp3",
+    audio: "music/SpotiDown.App - Faint - Linkin Park(1).mp3",
     cover: "albumcovers/Cover of Faint by Linkin Park.jpg",
     colors: { primary: "#2E2B2A", secondary: "#A08D74" },
     border: "#706C63",
@@ -153,7 +153,7 @@ const tracks = [
   },
   {
     name: "In the Aeroplane Over the Sea",
-    audio: "music/SpotiDown.App - In the Aeroplane Over the Sea - Neutral Milk Hotel.mp3",
+    audio: "music/SpotiDown.App - In the Aeroplane Over the Sea - Neutral Milk Hotel(1).mp3",
     cover: "albumcovers/SpotiDown.App - In the Aeroplane Over the Sea - Neutral Milk Hotel.jpeg",
     colors: { primary: "#C3D3C5", secondary: "#9C3B32" },
     border: "#EAD9B2",
@@ -161,7 +161,7 @@ const tracks = [
   },
   {
     name: "Loretta",
-    audio: "music/SpotiDownloader.com - Loretta - Ginger Root.mp3",
+    audio: "music/SpotiDownloader.com - Loretta - Ginger Root(1).mp3",
     cover: "albumcovers/Cover of Loretta by Ginger Root.jpg",
     colors: { primary: "#222A72", secondary: "#FFDA28" },
     border: "#3B3F99",
@@ -169,7 +169,7 @@ const tracks = [
   },
   {
     name: "New York",
-    audio: "music/SpotiDownloader.com - New York - Junior Varsity.mp3",
+    audio: "music/SpotiDownloader.com - New York - Junior Varsity(1).mp3",
     cover: "albumcovers/Cover of New York by Junior Varsity.jpg",
     colors: { primary: "#1A223D", secondary: "#4B3E6D" },
     border: "#D69078",
@@ -177,7 +177,7 @@ const tracks = [
   },
   {
     name: "Reelin' In The Years",
-    audio: "music/SpotiDownloader.com - Reelin' In The Years - Steely Dan.mp3",
+    audio: "music/SpotiDownloader.com - Reelin' In The Years - Steely Dan(1).mp3",
     cover: "albumcovers/Cover of Reelin' In The Years by Steely Dan.jpg",
     colors: { primary: "#E5C78F", secondary: "#C83772" },
     border: "#63B9DD",
@@ -185,7 +185,7 @@ const tracks = [
   },
   {
     name: "Scar Tissue",
-    audio: "music/SpotiDownloader.com - Scar Tissue - Red Hot Chili Peppers.mp3",
+    audio: "music/SpotiDownloader.com - Scar Tissue - Red Hot Chili Peppers(1).mp3",
     cover: "albumcovers/Cover of Scar Tissue by Red Hot Chili Peppers.jpg",
     colors: { primary: "#0077C8", secondary: "#E23E0F" },
     border: "#F7D59A",
@@ -193,7 +193,7 @@ const tracks = [
   },
   {
     name: "Yoshimi Battles the Pink Robots, Pt. 1",
-    audio: "music/SpotiDownloader.com - Yoshimi Battles the Pink Robots, Pt. 1 - The Flaming Lips.mp3",
+    audio: "music/SpotiDownloader.com - Yoshimi Battles the Pink Robots, Pt. 1 - The Flaming Lips(1).mp3",
     cover: "albumcovers/Cover of Yoshimi Battles the Pink Robots, Pt. 1 by The Flaming Lips.jpg",
     colors: { primary: "#F5DFA8", secondary: "#D86F4E" },
     border: "#F6BBD1",
@@ -201,7 +201,7 @@ const tracks = [
   },
   {
     name: "deep in it",
-    audio: "music/SpotiDownloader.com - deep in it - berlioz.mp3",
+    audio: "music/SpotiDownloader.com - deep in it - berlioz(1).mp3",
     cover: "albumcovers/Cover of deep in it by berlioz, Ted Jasper.jpg",
     colors: { primary: "#FFFFFF", secondary: "#FFDA28" },
     border: "#0090A0",
@@ -224,6 +224,7 @@ const ui = {
   time: document.getElementById("ui-time"),
   progress: document.getElementById("progress"),
   progressBar: document.getElementById("ui-progress"),
+  progressThumb: document.getElementById("ui-progress-thumb"),
   cover: document.getElementById("ui-cover"),
   title: document.getElementById("ui-title"),
   artist: document.getElementById("ui-artist"),
@@ -250,6 +251,7 @@ let audioCtx = null;
 let analyser = null;
 let sourceNode = null;
 let freqData = null;
+const audioCache = new Map();
 
 const physics = {
   accel: 0.6,
@@ -289,6 +291,18 @@ function resizeCanvas() {
 
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
+
+function preloadAudio() {
+  tracks.forEach((track) => {
+    const path = track.audio.replace(/^music\//i, "music/");
+    if (!audioCache.has(path)) {
+      const a = new Audio(path);
+      a.preload = "auto";
+      a.load();
+      audioCache.set(path, a);
+    }
+  });
+}
 
 function seedFog() {
   fogBlobs.length = 0;
@@ -352,6 +366,7 @@ function seedParticles() {
 
 seedParticles();
 seedFog();
+preloadAudio();
 
 function seedSongs() {
   songs.length = 0;
@@ -417,6 +432,31 @@ ui.progress.addEventListener("click", (e) => {
   currentAudio.currentTime = ratio * (currentAudio.duration || 0);
   updateUIFromAudio();
 });
+
+let isScrubbing = false;
+ui.progress.addEventListener("pointerdown", (e) => {
+  if (!currentAudio) return;
+  isScrubbing = true;
+  ui.progress.setPointerCapture(e.pointerId);
+  scrub(e);
+});
+ui.progress.addEventListener("pointermove", (e) => {
+  if (!isScrubbing || !currentAudio) return;
+  scrub(e);
+});
+ui.progress.addEventListener("pointerup", (e) => {
+  if (isScrubbing) {
+    isScrubbing = false;
+    ui.progress.releasePointerCapture(e.pointerId);
+  }
+});
+
+function scrub(e) {
+  const rect = ui.progress.getBoundingClientRect();
+  const ratio = clamp((e.clientX - rect.left) / rect.width, 0, 1);
+  currentAudio.currentTime = ratio * (currentAudio.duration || 0);
+  updateUIFromAudio();
+}
 
 function tryFire() {
   const now = performance.now();
@@ -525,13 +565,22 @@ function updateUIFromAudio() {
   ui.playPause.textContent = currentAudio.paused ? "⏵" : "⏸";
   const pct = dur ? Math.min(100, (cur / dur) * 100) : 0;
   ui.progressBar.style.width = `${pct}%`;
+  if (ui.progressThumb) {
+    ui.progressThumb.style.left = `${pct}%`;
+  }
 }
 
 function playSong(song) {
   stopCurrent();
   currentTrack = song.track;
   songs.forEach((s) => { s.locked = s.track === song.track; });
-  currentAudio = new Audio(song.track.audio);
+  const audioPath = song.track.audio.replace(/^music\//i, "music/");
+  if (audioCache.has(audioPath)) {
+    currentAudio = audioCache.get(audioPath).cloneNode(true);
+  } else {
+    currentAudio = new Audio(audioPath);
+    audioCache.set(audioPath, currentAudio.cloneNode(true));
+  }
   currentAudio.addEventListener("loadedmetadata", updateUIFromAudio);
   currentAudio.addEventListener("timeupdate", updateUIFromAudio);
   currentAudio.addEventListener("ended", () => {
