@@ -54,6 +54,5 @@ document.addEventListener("DOMContentLoaded", () => {
     showImage(index);
   });
 
-  // Ensure the first image is set in case the HTML changes.
   showImage(index);
 });

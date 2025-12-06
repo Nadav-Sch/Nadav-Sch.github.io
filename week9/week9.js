@@ -106,7 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }, speed);
     element._typeTimer = timer;
-    // keep reference in case we want to stop later
     return timer;
   };
 
