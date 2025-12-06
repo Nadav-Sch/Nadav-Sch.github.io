@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Playlist</title>
+  <link rel="stylesheet" href="final-project.css">
+</head>
+<body>
+  <canvas id="game" width="960" height="540" aria-label="interactive playlist playground"></canvas>
+  <div id="player-ui">
+    <div class="ui-left">
+      <img id="ui-cover" alt="" style="visibility:hidden;">
+      <div class="ui-meta">
+        <span id="ui-title" class="title"></span>
+        <span id="ui-artist" class="artist"></span>
+      </div>
+    </div>
+    <div class="ui-center">
+      <button id="stop-track"><span>■</span></button>
+      <button id="play-pause">⏵</button>
+      <div class="progress" id="progress">
+        <div class="bar" id="ui-progress"></div>
+      </div>
+      <span class="time" id="ui-time">0:00 / 0:00</span>
+    </div>
+    <div class="ui-spacer"></div>
+  </div>
+  <script defer src="final-project.js"></script>
+</body>
+</html>
