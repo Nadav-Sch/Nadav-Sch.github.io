@@ -568,9 +568,10 @@ function updatePlayer() {
 }
 
 function updateBullets(dt) {
+  const dtScale = dt / 16.67;
   for (const b of bullets) {
-    b.x += b.vx;
-    b.y += b.vy;
+    b.x += b.vx * dtScale;
+    b.y += b.vy * dtScale;
     b.life -= dt;
   }
   for (let i = bullets.length - 1; i >= 0; i--) {
