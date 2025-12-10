@@ -209,6 +209,9 @@ const tracks = [
   }
 ];
 
+const totalTracks = tracks.length;
+const foundTracks = new Set();
+
 const player = {
   x: world.width / 2,
   y: world.height / 2,
@@ -228,7 +231,8 @@ const ui = {
   cover: document.getElementById("ui-cover"),
   title: document.getElementById("ui-title"),
   artist: document.getElementById("ui-artist"),
-  left: document.querySelector(".ui-left")
+  left: document.querySelector(".ui-left"),
+  tracker: document.getElementById("ui-tracker")
 };
 
 const keys = { left: false, right: false, up: false, down: false };
@@ -665,6 +669,12 @@ function formatTime(sec) {
   return `${m}:${s}`;
 }
 
+function updateTracker() {
+  if (!ui.tracker) return;
+  const found = foundTracks.size;
+  ui.tracker.textContent = `songs found: ${found}/${totalTracks}`;
+}
+
 function updateUIFromAudio() {
   if (!currentAudio || !currentTrack) return;
   const dur = currentAudio.duration || 0;
@@ -681,6 +691,10 @@ function updateUIFromAudio() {
 function playSong(song) {
   stopCurrent();
   currentTrack = song.track;
+  if (!foundTracks.has(song.track.name)) {
+    foundTracks.add(song.track.name);
+    updateTracker();
+  }
   songs.forEach((s) => { s.locked = s.track === song.track; });
   const audioPath = song.track.audio.replace(new RegExp("^music/", "i"), "music/");
   if (audioCache.has(audioPath)) {
@@ -1290,3 +1304,5 @@ function loop(now) {
 }
 
 loop(performance.now());
+
+updateTracker();

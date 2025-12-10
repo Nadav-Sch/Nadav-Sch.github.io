@@ -151,8 +151,15 @@ canvas {
   justify-self: center;
 }
 
-.ui-spacer {
+.ui-right {
   min-width: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 @media (max-width: 768px) {
@@ -192,8 +199,9 @@ canvas {
   .ui-left {
     min-width: 160px;
   }
-  .ui-spacer {
+  .ui-right {
     min-width: 160px;
+    font-size: 11px;
   }
   .ui-meta .title {
     font-size: 12px;
